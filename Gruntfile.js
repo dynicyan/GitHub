@@ -89,7 +89,7 @@ module.exports = function(grunt) {
                 options: {
                     pretty: true,
                         data: function(dest, src) {
-                        return require('./slideimg/_source/data/connect.json');
+                        return require('slideimg/_source/data/connect.json');
                     }
                 },
                 files: [{
