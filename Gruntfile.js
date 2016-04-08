@@ -88,9 +88,9 @@ module.exports = function(grunt) {
             compile: {
                 options: {
                     pretty: true,
-                    // data: function(dest, src) {
-                    //     return require('./app/_source/jade/data/data.json');
-                    // }
+                        data: function(dest, src) {
+                        return require('slideimg/_source/jade/data/connect.json');
+                    }
                 },
                 files: [{
                     expand: true,
