@@ -1,5 +1,5 @@
 @import "compass","compass/reset","compass/css3";
-body{overflow: hidden;}
+body{font-family: "微软雅黑";}
 .slide{
 	height: auto;
 	width: 100%;
@@ -84,4 +84,31 @@ body{overflow: hidden;}
 			border:5px solid #000;
 		}
 	}
+}
+//json 样式表
+.exp-title{
+	font-size: 18px;
+	line-height: 24px;
+}
+.json-connect{
+	width: 100%;
+	font-size: 14px;
+	color: #666;
+	div{line-height: 20px;padding-left: 15px;margin-top: 10px;}
+}
+.json-exp{
+	margin-top: 20px;
+	.exp-container{
+		padding-left: 15px;
+		li{
+			color: #666;
+			font-size:14px;
+			margin-top: 20px;
+			div{line-height: 20px;}
+		}
+	}
+}
+.clearfix{
+	clear: both;
+	display: table;
 }
