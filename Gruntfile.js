@@ -27,7 +27,6 @@ module.exports = function(grunt) {
                 ]
             }
         },
-
         // clean
         // clean: {
         //     build: {
@@ -87,9 +86,9 @@ module.exports = function(grunt) {
         jade: {
             compile: {
                 options: {
-                    pretty: true,
-                        data: function(dest, src) {
-                        return require('./slideimg/_source/data/connect.json');
+                        // pretty: true,
+                        // data: function(dest, src) {
+                        // return require('./slideimg/_source/data/connect.json');
                     }
                 },
                 files: [{
