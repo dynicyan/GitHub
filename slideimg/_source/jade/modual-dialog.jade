@@ -7,6 +7,42 @@ block append head
 	meta(content="" name="Keywords")
 block content
 	.dialog-modual
+		.aaa#abc 弹出文本输入对话框
+		.aaa#aaa 弹出信息确认框
+		.aaa#bbb alert对话框
+		.aaa#ccc
+	#sure(style="display:none") nihaome
 block script
 	<script src="js/jquery-1.8.3.min.js"></script>
-	<script src="js/dy-dialog.js"></script>
+	<script src="js/dy.dialog.js"></script>
+script.
+	$(function(){
+		$('#abc').on('click',function(){
+			dy.dialog.prompt({
+					title: '消息提示',
+					message:'请将信息填写完整请将信息整!',
+					width: 480,
+					height: 250
+				});
+		})
+		$('#aaa').on('click',function(){
+			dy.dialog.confirm({
+					title: '消息提111示',
+					message:'请将信息填写完整请将信整!',
+					width: 480,
+					height: 250
+				});
+		})
+		$('#bbb').on('click',function(){
+			dy.dialog.alert({
+					title: '消息提示',
+					message:'请将信息填写完整请将信完整!'
+				});
+		})
+		$('#ccc').on('click',function(){
+			dy.dialog.pop({
+					title: '消息提11示',
+					content: $('#sure').html(),
+				});
+		})
+	})

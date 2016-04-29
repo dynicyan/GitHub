@@ -6,7 +6,7 @@
 ***/
 ;
 (function($,dy){
-	function($){
+	(function($){
 		if(!$) return;
 		$.extend(String.prototype,{
 			'sliceBefore':function(str){
@@ -23,9 +23,9 @@
 				}
 			}
 		});
-	}(jQuery);
-	//ÃüÃû
-	function($){
+	})(jQuery);
+	//å‘½å
+	(function($){
 		if(!$) return;
 		if(!window.dy) window.dy = {};
 		dy.namespace = function(name,sep){
@@ -83,9 +83,9 @@
 			}
 			$.extend(this.text[dataset], data);
 		};
-	}(jQuery);
+	})(jQuery);
 
-	//º¯Êı¼üÅÌÊÂ¼ş
+	//å‡½æ•°é”®ç›˜äº‹ä»¶
 	(function($){
 		if (!$ || !window.dy) return;
 
@@ -135,9 +135,9 @@
 		};
 	})(jQuery);
 
-	//ÕÚÕÖ²ã
+	//é®ç½©å±‚
 	(function($){
-		if(!$ || window.dy) return;
+		if(!$ || !window.dy) return;
 		dy.namespace('dy.maskstyles');
 		$.extend(dy.maskstyles,{
 			'mask-overlayer': 'z-index:9000;display:none;width:100%;height:100%;position:absolute;top:0;left:0;right:0;bottom:0;',
@@ -145,54 +145,56 @@
 		});
 
 		dy.namespace('dy.mask');
-		//»ØÊÕÕ¾
+		//å›æ”¶ç«™
 		dy.recyclebin = {};
 		dy.recyclebin.id = 'mask-recyclebin';
 		dy.recyclebin.container = $('#mask-recyclebin');
 		dy.recyclebin.init = function(){
 			if($('#' + this.id).size() == 0){
-				this.container = $('<div id="' + this.id + '" style="' + TTFF.maskstyles[this.id] + '"></div>');
+				this.container = $('<div id="' + this.id + '" style="' + dy.maskstyles[this.id] + '"></div>');
 				$('body').append(this.container);
 			}
 		};
-		//Ôö¼Óµ¯²ã
+		//å¢åŠ å¼¹å±‚
 		dy.recyclebin.add = function(elm){
 			this.container.append(elm);
 		};
-		//·µ»Øid×Ó¼¯
+		//è¿”å›idå­é›†
 		dy.recyclebin.find = function(id){
-			return (this.container.children('#'+id).size>)?true:false;
-		}
-		//Çå³ıÄÚÈİ
+			// return (this.container.children('#'+id).size()>0)?true:false;
+			return (this.container.children('#' + id).size()>0)?true:false;
+		};
+		//æ¸…é™¤å†…å®¹
 		dy.recyclebin.clear = function(){
 			this.container.html('');
-		}
+		};
 		//------------
-		//ÕÚÕÖ²ã²å¼ş
+		//é®ç½©å±‚æ’ä»¶
 		dy.overlayer = {};
 		dy.overlayer.id = 'mask-overlayer';
 		dy.overlayer.status = false;
-		dy.overlayer.showLayer = function(op,bg){
-			if(this.status) return false;
-			op = (typeof(op) != 'undefined') ? op : .5;
+		//æ˜¾ç¤ºé®ç½©å±‚
+		dy.overlayer.showLayer = function(op, bg) {
+			if (this.status) return false;
+			op = (typeof(op) != 'undefined') ? op : 0.5;
 			bg = bg || '#000';
-			if ($('#'+this.id).length() == 0) $('body').append('<div id="'+ id +'" style = "'+ dy.maskstyles[this.id] +'"></div>');
-     		$('#' + this.id).css({
-     			background: bg,
-     			filter:('alpha(opacity='+op*100+')'),
-     			opacity:op
-     		});
-     		this.setSize();
-     		this.satatus = true;			
+			if ($('#' + this.id).length == 0) $('body').append('<div id="' + this.id + '" style="' + dy.maskstyles[this.id] + '"></div>');
+			$('#' + this.id).css({
+				background: bg,
+				filter: ('alpha(opacity=' + op * 100 + ')'),
+				opacity: op
+			});
+			this.setSize();
+			this.status = true;
 		};
-		//¹Ø±ÕÕÚÕÖ²ã
+		//å…³é—­é®ç½©å±‚
 		dy.overlayer.hideLayer = function(){
 			if(this.status){
 				$('#' + this.id).fadeOut();
 				this.status = false;
 			}
 		};
-		//ÉèÖÃÕÚÕÖ²ã´óĞ¡
+		//è®¾ç½®é®ç½©å±‚å¤§å°
 		dy.overlayer.setSize = function (){
 			$('#' + this.id).css({
 				width:'100%',
@@ -200,25 +202,25 @@
 				display:'block'
 			})
 		};
-		//ÕÚÕÖ²ã×ÔÊÊÓ¦´óĞ¡
+		//é®ç½©å±‚è‡ªé€‚åº”å¤§å°
 		dy.overlayer.resize = function(){
-			if(this.statue){
+			if(this.status){
 				$('#' + this.id).css('display','none');
 				this.setSize();
 			}
 		};
-		//--´°¿Ú×ÔÊÊÓ¦
-		window.resize = function(){
+		//--çª—å£è‡ªé€‚åº”
+		$(window).resize(function(){
 			dy.overlayer.resize();
-		}
-		//³õÊ¼»¯µ¯²ã
+		});
+		//åˆå§‹åŒ–å¼¹å±‚
 		dy.timestat.add('load-mask-overlayer');
 
 	})(jQuery);
 
-	//µ¯´°ÄÚÈİ
+	//å¼¹çª—å†…å®¹
 	(function($){
-		if (!$ || window.dy) return;
+		if (!$ || ! window.dy) return;
 		//----------
 		dy.namespace('dy.util');
 		//----------
@@ -226,42 +228,43 @@
 		//----------
 		var utilId = 'c-dialog';
 		var utilText = dy.lang.get(utilId) || {
-			'close':'¹Ø±Õ',
-			'closeTips':'¹Ø±Õ¸¡²ã',
-			'loading':'ÕıÔÚ¼ÓÔØÖĞ¡­¡­',
-			'laodingError':'¼ÓÔØÊ§°Ü',
-			'confirm':'È·¶¨',
-			'alertTitle':'ÏûÏ¢ÌáÊ¾',
-			'confirmTitle':'È·ÈÏÌáÊ¾',
-			'promptTitle':'ÊäÈëÌáÊ¾'
+			'close':'å…³é—­',
+			'closeTips':'å…³é—­æµ®å±‚',
+			'loading':'æ­£åœ¨åŠ è½½ä¸­â€¦â€¦',
+			'loadingError':'åŠ è½½å¤±è´¥',
+			'confirm':'ç¡®å®š',
+			'cancel':'å–æ¶ˆ',
+			'alertTitle':'æ¶ˆæ¯æç¤º',
+			'confirmTitle':'ç¡®è®¤æç¤º',
+			'promptTitle':'è¾“å…¥æç¤º'
 		};
 		utilText.id = utilId;
 		//-------------
 		dy.dialog = {};
 		dy.dialog.id = utilId;
-		dy.dialog.satatus = false;
-		//´°ÌåÀ­Éì×´Ì¬
+		dy.dialog.status = false;
+		//çª—ä½“æ‹‰ä¼¸çŠ¶æ€
 		dy.dialog.resizeStatus = false;
-		//µ¯´°¼ÓÔØÍê³ÉÊ±»Øµ÷·½·¨
+		//å¼¹çª—åŠ è½½å®Œæˆæ—¶å›è°ƒæ–¹æ³•
 		dy.dialog.finishCallback = null;
-		//µ¯´°¹Ø±ÕÊ±»Øµ÷·½·¨
+		//å¼¹çª—å…³é—­æ—¶å›è°ƒæ–¹æ³•
 		dy.dialog.closeCallback = null;
-		//µ¯´°Ä£°å
-		dy.dialog.templates = {
+		//å¼¹çª—æ¨¡æ¿
+		dy.dialog.tmpls = {
 			'frameset':[
-				'<div id = {id}>',
+				'<div id = "{id}"">',
 				'<div class="pdb-bgm"></div>',
 				'<div class="pdb-main">',
-				'<div class="pdb-title"><h4></h4><div class="border-out"><p class="border-in"><span class="close icon icon-close" onclick="TTFF.dialog.close();" title="{closeTips}">{close}</span></p></div></div>',
+				'<div class="pdb-title"><h4></h4><div class="border-out"><p class="border-in"><span class="close icon icon-close" onclick="dy.dialog.close();" title="{closeTips}">{close}</span></p></div></div>',
 				'<div class="pdb-content"><div class="pdb-contentframe"></div></div>',
 				'<div class="pdb-bottom"></div>',
 				'</div>',
 				'</div>'
 			].join(''),
-			'titletab':'<span data-url="{url}" data-width = "{width}" data-height = "{height}">{title}</span>'
+			'titletab':'<span data-url="{url}" data-width = "{width}" data-height = "{height}">{title}</span>',
 			'bottom': '<p class="pdb-bottom-action"><a class="dialog-btn btn-action"><em>{confirm}</em></a><a class="dialog-btn btn-cancel"><em>{cancel}</em></a></p><p class="pdb-bottom-text"></p>',
 			'loading': '<p class="txt-loading-32" style="margin-top:{marginTop}px;">{loadingText}</p>',
-			'alert': '<div class="msg-{type} f14">{message}</div><div class="tac pb20"><a class="dialog-btn btn-cancel btn-ok" onclick="TTFF.dialog.close();"><em>È·¶¨</em></a></div>',
+			'alert': '<div class="msg-{type} f14">{message}</div><div class="tac pb20"><a class="dialog-btn btn-cancel btn-ok" onclick="dy.dialog.close();"><em>ç¡®å®š</em></a></div>',
 			'confirm': '<div class="msg-confirm f14">{message}</div>',
 			'prompt': '<div class="p20 f14">{content}</div>',
 			'inputelm': '<dl class="prompt clearfix"><dt>{title}</dt><dd><input type="text" class="txt-input" /></dd></dl>',
@@ -269,21 +272,21 @@
 			'error': '<div class="p20"><p class="txt-error">{loadingError}</p></div>',
 			'ajaxload': '<p class="txt-loading-32" style="margin-top:{height}px;">&nbsp;</p>'
 		};
-		//³õÊ¼»¯µ¯´°
+		//åˆå§‹åŒ–å¼¹çª—
 		dy.dialog.init = function(){
-			if($('#'+this.id).size()>0){
-				$(body).append(this.templates.frameset.substitute(utilText));
+			if($('#'+this.id).size() == 0){
+				$('body').append(this.tmpls.frameset.substitute(utilText));
 				this.container = $('#'+ this.id);
 			}
 		};
-		//´ò¿ªµ¯³ö´°
+		//æ‰“å¼€å¼¹å‡ºçª—
 		dy.dialog.open = function(options){
 			if(this.status && this.lastContentId){
 				$('body').append($('#'+this.lastContentId));
 				$('#'+this.lastContentId).hide();
 				this.lastContentId = null;
 			}
-			dy.overlayer.showLayer(options.bg,options.overbg);
+			dy.overlayer.showLayer(options.op,options.overbg);
 			this.init();
 			this.options = options;
 			if(options.callback) this.finishCallback = options.callback;
@@ -311,7 +314,7 @@
 						url: options.content.url,
 						data: options.content.param || '',
 						error:function(){
-							_this.setContent(options.content.error || _this.templates.error.substitute(utilText));
+							_this.setContent(options.content.error || _this.tmpls.error.substitute(utilText));
 							_this.setAutoHeight(60);
 							_this.finish();
 						},
@@ -321,8 +324,8 @@
 							options.ajaxComplete&&options.ajaxComplete.call(_this);
 
 						},
-						beforeSend: function(){
-							var loading_html = _this.templates.ajaxload.substitute({
+						beforeSend: function(xhr,status){
+							var loading_html = _this.tmpls.ajaxload.substitute({
 								height:(height - 32) / 2
 							});
 							contentframe.html(options.content.loading || loading_html);
@@ -337,10 +340,11 @@
 					this.setContent('');
 					$('#'+options.id).appendTo('#'+this.id+'.pdb-contentframe');
 					$('#'+options.id).removeClass('hidden').show();
+					this.lastContentId = options.id;
 					break;
 				case 'iframe':
 					this.iframeId = 'iframe_' + (new Date()).getTime();
-					this.setContent(this.templates.iframe.substitute({
+					this.setContent(this.tmpls.iframe.substitute({
 						iframeId:this.iframeId,
 						height:height
 					}));
@@ -349,7 +353,7 @@
 			}
 			this.container.find('.pdb-main').css('width',width + 'px');
 			this.container.find('.pdb-content').css('height',height + 'px');
-			this.container.css('width', width + 8 + 'px').show();
+			this.container.css('width', width + 2 + 'px').show();
 			var height_2 = height + ((options.title)?this.container.find('.pdb-title').height() : 0) + ((options.bottom)?55:0);
 			this.container.find('.pdb-bgm, .pdb-main').css('height', height_2 + 'px');
 			this.container.attr('class', options.css || '');
@@ -358,13 +362,13 @@
 			this.resize();
 			if (options.mode != 'ajax') this.finish();
 			if (options.supportESC !== false) { // added by CD, esc
-				TTFF.page.keyHandler.add(document, 'ESC', 'esc-dialog', function() {
-					TTFF.dialog.close();
+				dy.page.keyHandler.add(document, 'ESC', 'esc-dialog', function() {
+					dy.dialog.close();
 				});
 			}
 			this.handlePopupCloseButton(options.closeButtonOn);
 		};
-		//¹Ø±Õµ¯´°°´Å¥ÊÇ·ñ¿ªÆô
+		//å…³é—­å¼¹çª—æŒ‰é’®æ˜¯å¦å¼€å¯
 		dy.dialog.handlePopupCloseButton = function(closeButtonOn){
 			var $popUpCloseButton = $('#c-dialog .border-out');
 			if($popUpCloseButton.length){
@@ -375,10 +379,10 @@
 				}
 			}
 		};
-		TTFF.dialog.finish = function() {
+		dy.dialog.finish = function() {
 			if (this.finishCallback) this.finishCallback(this.container.find('.pdb-contentframe'));
 		};
-		//µ÷Õûµ¯³ö´°´óĞ¡
+		//è°ƒæ•´å¼¹å‡ºçª—å¤§å°
 		dy.dialog.resize = function(){
 			if(this.status && this.resizeStatus){
 				var _left = ($(window).width() - this.container.width()) / 2;
@@ -387,11 +391,11 @@
 					left: $(document).scrollLeft() + Math.max(_left,20) + 'px',
 					top: $(document).scrollTop() + Math.max(_top,20) + 'px'
 				})
-				if($.browser.isIE6) this.container.binddyUI('hideOverElements','select,object');
+				if($.browser.isIE6) this.container.binddyUI('HideOverElements','select,object');
 			}
 		};
-		//¹Ø±Õµ¯³ö´°
-		dy.dialog.close = function(){
+		//å…³é—­å¼¹å‡ºçª—
+		dy.dialog.close = function(effect){
 			if(!this.status) return;
 			switch(effect){
 				case 'fade':
@@ -419,20 +423,20 @@
 			}
 			dy.page.keyHandler.remove(document, 'esc-dialog');
 		};
-		// ÉèÖÃ¹Ø±Õ»Øµ÷º¯Êı, added by cd
+		// è®¾ç½®å…³é—­å›è°ƒå‡½æ•°, added by cd
 		dy.dialog.setCloseCallback = function (callback) {
 			if (Object.prototype.toString.call(callback) !== "[object Function]") {
 				return;
 			}
 			this.closeCallback = callback;
-		};
-		//¸ü»»µ¯´°±êÌâ
+		}
+		//æ›´æ¢å¼¹çª—æ ‡é¢˜
 		dy.dialog.setTitle = function(title,tabs){
 			var titleElm = this.container.find('.pdb-title h4');
 			if(tabs){
 				titleElm.addClass('tab').html('');
 				for(var i = 0; i < tabs.length; i++){
-					titleElm.append(this.templates.titletab.substitute(tabs[i]));
+					titleElm.append(this.tmpls.titletab.substitute(tabs[i]));
 				}
 				titleElm.find('span:first').addClass('on');
 				titleElm.find('span').click(function(){
@@ -447,22 +451,22 @@
 				titleElm.removeAttr('class').html(title);
 			}
 		};
-		//ÉèÖÃµ¯´°ÑùÊ½
+		//è®¾ç½®å¼¹çª—æ ·å¼
 		dy.dialog.setStyle = function(options){
 			if (options.titlecolor) this.container.find('.pdb-title').css('color',options.titlecolor)
 			if (options.bgcolor) this.container.find('.pdb-title').css('background-color', options.bgcolor);
 			if (options.bordercolor) this.container.find('.pdb-main').css('border-color', options.bordercolor);
 		};
-		//¸ü»»µ¯³ö´°ÄÚÈİ
+		//æ›´æ¢å¼¹å‡ºçª—å†…å®¹
 		dy.dialog.setContent = function(html){
 			this.container.find('.pdb-contentframe').html(html);
 		};
-		//¸ü»»IframeÒ³ÄÚÈİ
+		//æ›´æ¢Iframeé¡µå†…å®¹
 		dy.dialog.setIframe = function(url){
-			$('#' + this.iframe).attr('src',url);
+			$('#' + this.iframeId).attr('src',url);
 		};
-		//¸ü»»µ¯´°µ×²¿ÄÚÈİ
-		dy.dialog.setBottom = function(){
+		//æ›´æ¢å¼¹çª—åº•éƒ¨å†…å®¹
+		dy.dialog.setBottom = function(options){
 			if (!options) return;
 			if (options.html) {
 				this.container.find('.pdb-bottom').html(options.html);
@@ -482,7 +486,7 @@
 				});
 			} else {
 				this.container.find('.pdb-bottom .btn-action').click(function() {
-					TTFF.dialog.close();
+					dy.dialog.close();
 				});
 			}
 			if (options.cancel) {
@@ -491,24 +495,24 @@
 				});
 			} else {
 				this.container.find('.pdb-bottom .btn-cancel').click(function() {
-					TTFF.dialog.close();
+					dy.dialog.close();
 				});
 			}
 		};
-		//ÖØÉèµ¯´°¿í¶È
+		//é‡è®¾å¼¹çª—å®½åº¦
 		dy.dialog.setWidth = function(width){
 			if (!width) return;
 			var width = parseInt(width);
 			this.container.find('.pdb-main').css('width', width + 'px');
-			this.container.css('width', (width + 8) + 'px');
+			this.container.css('width', width + 'px');
 			this.resize();
 		};
-		//ÖØÉèµ¯´°¸ß¶È
+		//é‡è®¾å¼¹çª—é«˜åº¦
 		dy.dialog.setHeight = function(height){
 			if (!height) return;
 			var height = parseInt(height);
 			var _height = this.container.find('.pdb-content').height();
-			var _height2 = this.container.find('pdb-main').height();
+			var _height2 = this.container.find('.pdb-main').height();
 			this.container.find('.pdb-bgm, .pdb-main').css('height', (height - _height + _height2) + 'px');
 			this.container.find('.pdb-content').css('height', height + 'px');
 			this.container.find('.pdb-content iframe').attr('height', height);
@@ -519,29 +523,29 @@
 			var height = Math.max($('.pdb-contentframe').height(), min || 100);
 			this.setHeight(height);
 		};
-		//ÏÔÊ¾¼ÓÔØ½ø¶ÈÌõ
+		//æ˜¾ç¤ºåŠ è½½è¿›åº¦æ¡
 		dy.dialog.showLoading = function(params){
 			params.mode = 'text';
 			params.marginTop = (params.height - 56) / 2;
 			params.loadingText = params.loadingText || utilText.loading;
-			params.content = this.templates.loading.substitute(params);
+			params.content = this.tmpls.loading.substitute(params);
 			this.open(params);
 			return false;
 		};
-		//ÏÔÊ¾µ¯³ö´°ÄÚÈİ
+		//æ˜¾ç¤ºå¼¹å‡ºçª—å†…å®¹
 		dy.dialog.show = function(params){
 			params.mode = 'id';
 			this.open(params);
 			this.setAutoHeight();
 			return false;
 		};
-		//´ò¿ªµ¯³ö´°ÄÚÈİ
+		//æ‰“å¼€å¼¹å‡ºçª—å†…å®¹
 		dy.dialog.pop = function(params){
 			params.mode = 'iframe';
 			this.open(params);
 			return false;
 		};
-		//´ò¿ªAjaxÒ³Ãæ¡¢
+		//æ‰“å¼€Ajaxé¡µé¢
 		dy.dialog.ajax = function(){
 			params.mode = 'ajax';
 			params.content = {
@@ -550,7 +554,7 @@
 			this.open(params);
 			return false;
 		};
-		//´ò¿ªÌáĞÑ¿ò
+		//æ‰“å¼€æé†’æ¡†
 		dy.dialog.alert = function(params){
 			if(typeof(params) == 'string'){
 				params = {
@@ -572,7 +576,7 @@
 			this.setAutoHeight();
 			return false;
 		};
-		//´ò¿ªÈ·ÈÏ¿ò
+		//æ‰“å¼€ç¡®è®¤æ¡†
 		dy.dialog.confirm = function(params){
 			if (typeof(params) == 'string') {
 				params = {
@@ -581,11 +585,11 @@
 			}
 			var content = this.tmpls.confirm.substitute(params);
 			var callback = function() {
-				TTFF.dialog.close();
+				dy.dialog.close();
 				if (params.callback && $.isFunction(params.callback)) params.callback();
 			};
 			var cancel = function() {
-				TTFF.dialog.close();
+				dy.dialog.close();
 				if (params.cancel && $.isFunction(params.cancel)) params.cancel();
 			};
 			this.open({
@@ -604,7 +608,7 @@
 			this.setAutoHeight(60);
 			return false;
 		};
-		//´ò¿ªÊäÈë¿ò
+		//æ‰“å¼€è¾“å…¥æ¡†
 		dy.dialog.prompt = function(params){
 			if (!$.isArray(params.message)) {
 				params.message = [params.message];
@@ -620,14 +624,14 @@
 			});
 			var callback = function() {
 				var inputValues = [];
-				TTFF.dialog.container.find('dl.prompt input').each(function() {
+				dy.dialog.container.find('dl.prompt input').each(function() {
 					inputValues.push($(this).val().trim());
 				});
 				params.callback(inputValues);
-				TTFF.dialog.close();
+				dy.dialog.close();
 			};
 			var cancel = function() {
-				TTFF.dialog.close();
+				dy.dialog.close();
 			};
 			this.open({
 				mode: 'text',
@@ -644,12 +648,12 @@
 			this.setAutoHeight(60);
 			return false;
 		};
-		//×ÔÊÊÓ¦µ¯³ö´°Î»ÖÃ
+		//è‡ªé€‚åº”å¼¹å‡ºçª—ä½ç½®
 		$(window).resize(function() {
-			TTFF.dialog.resize();
+			dy.dialog.resize();
 		});
 		// ----------------------------
-		TTFF.timestat.add('load-util-dialog');
-		//TTFF.debug('dialog.js', '³õÊ¼»¯³É¹¦');
+		dy.timestat.add('load-util-dialog');
+		//dy.debug('dialog.js', 'åˆå§‹åŒ–æˆåŠŸ');
 	})(jQuery);
-})(jQuery,window.dy|| (window.dy = {}));
+})(jQuery, window.dy || (window.dy = {}));
