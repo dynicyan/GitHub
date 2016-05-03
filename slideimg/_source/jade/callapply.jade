@@ -1,0 +1,56 @@
+extends ./layout/layout
+block append head
+	meta(charset="utf-8")
+	title 4种状态自定义弹出框
+	link(rel='stylesheet' href='css/imgslide.css')
+	link(rel='shortcut icon' href='http://img1.2345.com/zsimg/images/v2/16.ico' type="image/x-icon")
+	meta(content="" name="Description")
+	meta(content="" name="Keywords")
+block content
+	- var goods = [{name:'fi',price:'10'},{name:'tw',price:'11'},{name:'th',price:'12'},{name:'fu',price:'13'}]
+	h1 call()及apply()应用
+	.call call()应用demo
+	.apply apply()应用demo
+block script
+	<script src="js/jquery-1.8.3.min.js"></script>
+	script.
+		$(function(){
+			//- function add(a,b){
+			//- 	alert(a+b);
+			//- }
+			//- function sub(a,b){
+			//- 	alert(a-b);
+			//- }
+			//- function addClass(a,cl1){
+			//- 	a.addClass(cl1);
+			//- }
+			//- function removeClass(b,cl2){
+			//- 	b.removeClass(cl1)
+			//- }
+
+			//- $('.call').on('click',function(){
+			//- 	addClass.call(removeClass,$(this),"bg1");
+			//- })
+			function Class1(a,cl1) 
+			{ 
+			    this.name = "bg1"; 
+			    this.showNam = function() 
+			    { 
+			    	a.addClass(cl1);
+			        alert(this.name);
+			    } 
+			} 
+
+			function Class2(b,cl1) 
+			{ 
+			    this.name = "bg2"; 
+			} 
+
+			var c1 = new Class1(); 
+			var c2 = new Class2();
+			$('.call').on('click',function(){
+				c1.showNam.call(this,bg2); 
+				//- c1.cf.call(c2);
+				//- console.log($(this).attr('class'))
+			})
+		})

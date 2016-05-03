@@ -1,3 +1,4 @@
+extends ./layout/layout
 block append head
 	meta(charset="utf-8")
 	title 4种状态自定义弹出框
@@ -6,43 +7,77 @@ block append head
 	meta(content="" name="Description")
 	meta(content="" name="Keywords")
 block content
+	- var goods = [{name:'fi',price:'10'},{name:'tw',price:'11'},{name:'th',price:'12'},{name:'fu',price:'13'}]
 	.dialog-modual
 		.aaa#abc 弹出文本输入对话框
 		.aaa#aaa 弹出信息确认框
 		.aaa#bbb alert对话框
-		.aaa#ccc
+		.aaa#ccc open对话框
 	#sure(style="display:none") nihaome
+	table.checktable
+		thead
+			tr
+				th
+					input(id="selectAll" class="selectAll" type="checkbox" name="goods" value="0")
+				th goods-name
+				th goods-price
+				th goods-number
+				th goods-ap
+				th goods-delete
+		tbody
+			for i,idex in goods
+				tr
+					td
+						input(id="ck#{idex}" type="checkbox" name="goods" value="#{i.price},2000")
+					td #{i.name}
+					td #{i.price}
+					td
+						.setnum
+							span(rel-type="down") -1
+							<input type="text" name="" value="" class='writecan'>
+							span(rel-type="add") +1
+					td 0.00
+					td <a>删除</a>
+	.total
+		|商品个数为
+		span.numberall
+		|总价为
+		span.priceall
+		|总积分为
+		span.scoreall
 block script
 	<script src="js/jquery-1.8.3.min.js"></script>
 	<script src="js/dy.dialog.js"></script>
-script.
-	$(function(){
-		$('#abc').on('click',function(){
-			dy.dialog.prompt({
-					title: '消息提示',
-					message:'请将信息填写完整请将信息整!',
-					width: 480,
-					height: 250
-				});
+	<script src="js/count.js"></script>
+	script.
+		$(function(){
+			$('#abc').on('click',function(){
+				dy.dialog.prompt({
+						title: '消息提示',
+						message:'请将信息填写完整请将信息整!',
+						width: 480,
+						height: 250
+					});
+			})
+			$('#aaa').on('click',function(){
+				dy.dialog.confirm({
+						title: '消息提111示',
+						message:'请将信息填写完整请将信整!',
+						width: 480,
+						height: 250
+					});
+			})
+			$('#bbb').on('click',function(){
+				dy.dialog.alert({
+						title: '消息提示',
+						message:'请将信息填写完整请将信完整!'
+					});
+			})
+			$('#ccc').on('click',function(){
+				dy.dialog.open({
+						title: '消息提11示',
+						content: $('#sure').html(),
+						height:200
+					});
+			})
 		})
-		$('#aaa').on('click',function(){
-			dy.dialog.confirm({
-					title: '消息提111示',
-					message:'请将信息填写完整请将信整!',
-					width: 480,
-					height: 250
-				});
-		})
-		$('#bbb').on('click',function(){
-			dy.dialog.alert({
-					title: '消息提示',
-					message:'请将信息填写完整请将信完整!'
-				});
-		})
-		$('#ccc').on('click',function(){
-			dy.dialog.pop({
-					title: '消息提11示',
-					content: $('#sure').html(),
-				});
-		})
-	})

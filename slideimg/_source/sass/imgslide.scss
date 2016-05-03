@@ -187,3 +187,18 @@ body{font-family: "微软雅黑";}
 	#mask-overlayer{ opacity: 0.2 !important;}
 	#c-dialog .pdb-main .pdb-title .border-in{ border: 0;}
 	#c-dialog .pdb-main .txt-loading-32{ padding-top: 10px !important;}
+
+.checktable{
+	width: 100%;
+	font-size:16px;
+	color:#666;
+	thead{border: 1px solid #eee;background-color:#D5FFFF;line-height:32px;height:32px;}
+	tbody{border:1px solid #eee}
+}
+.call,.apply{
+	color:#f00;
+	line-height:48px;
+	margin-bottom:15px;
+}
+.bg1{background-color:red;color:#fff}
+.bg2{background-color:green;color:#fff}

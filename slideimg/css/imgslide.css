@@ -517,4 +517,35 @@ body {
   padding-top: 10px !important;
 }
 
+.checktable {
+  width: 100%;
+  font-size: 16px;
+  color: #666;
+}
+.checktable thead {
+  border: 1px solid #eee;
+  background-color: #D5FFFF;
+  line-height: 32px;
+  height: 32px;
+}
+.checktable tbody {
+  border: 1px solid #eee;
+}
+
+.call, .apply {
+  color: #f00;
+  line-height: 48px;
+  margin-bottom: 15px;
+}
+
+.bg1 {
+  background-color: red;
+  color: #fff;
+}
+
+.bg2 {
+  background-color: green;
+  color: #fff;
+}
+
 /*# sourceMappingURL=imgslide.css.map */

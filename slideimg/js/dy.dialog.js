@@ -540,7 +540,7 @@
 			return false;
 		};
 		//打开弹出窗内容
-		dy.dialog.pop = function(params){
+		dy.dialog.pop = function(params){		
 			params.mode = 'iframe';
 			this.open(params);
 			return false;

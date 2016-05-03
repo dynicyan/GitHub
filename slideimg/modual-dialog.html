@@ -1,48 +1,124 @@
-
-<meta charset="utf-8"/>
-<title>4种状态自定义弹出框</title>
-<link rel="stylesheet" href="css/imgslide.css"/>
-<link rel="shortcut icon" href="http://img1.2345.com/zsimg/images/v2/16.ico" type="image/x-icon"/>
-<meta content="" name="Description"/>
-<meta content="" name="Keywords"/>
-<div class="dialog-modual">
-  <div id="abc" class="aaa">弹出文本输入对话框</div>
-  <div id="aaa" class="aaa">弹出信息确认框</div>
-  <div id="bbb" class="aaa">alert对话框</div>
-  <div id="ccc" class="aaa"></div>
-</div>
-<div id="sure" style="display:none">nihaome</div>
-<script src="js/jquery-1.8.3.min.js"></script>
-<script src="js/dy.dialog.js"></script>
-<script>
-  $(function(){
-  	$('#abc').on('click',function(){
-  		dy.dialog.prompt({
-  				title: '消息提示',
-  				message:'请将信息填写完整请将信息整!',
-  				width: 480,
-  				height: 250
-  			});
-  	})
-  	$('#aaa').on('click',function(){
-  		dy.dialog.confirm({
-  				title: '消息提111示',
-  				message:'请将信息填写完整请将信整!',
-  				width: 480,
-  				height: 250
-  			});
-  	})
-  	$('#bbb').on('click',function(){
-  		dy.dialog.alert({
-  				title: '消息提示',
-  				message:'请将信息填写完整请将信完整!'
-  			});
-  	})
-  	$('#ccc').on('click',function(){
-  		dy.dialog.pop({
-  				title: '消息提11示',
-  				content: $('#sure').html(),
-  			});
-  	})
-  })
-</script>
+<!DOCTYPE html><!--[if lt IE 6]><html class="ie6"><![endif]-->
+<!--[if IE 7]><html class="ie7"><![endif]-->
+<!--[if IE 8]><html class="ie8"><![endif]-->
+<!--[if gte IE 9]><html class="ie9"><![endif]-->
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta charset="utf-8">
+  <title>4种状态自定义弹出框</title>
+  <link rel="stylesheet" href="css/imgslide.css">
+  <link rel="shortcut icon" href="http://img1.2345.com/zsimg/images/v2/16.ico" type="image/x-icon">
+  <meta content="" name="Description">
+  <meta content="" name="Keywords">
+</head>
+<body>
+  <div class="dialog-modual">
+    <div id="abc" class="aaa">弹出文本输入对话框</div>
+    <div id="aaa" class="aaa">弹出信息确认框</div>
+    <div id="bbb" class="aaa">alert对话框</div>
+    <div id="ccc" class="aaa">open对话框</div>
+  </div>
+  <div id="sure" style="display:none">nihaome</div>
+  <table class="checktable">
+    <thead>
+      <tr>
+        <th>
+          <input id="selectAll" type="checkbox" name="goods" value="0" class="selectAll">
+        </th>
+        <th>goods-name</th>
+        <th>goods-price</th>
+        <th>goods-number</th>
+        <th>goods-ap</th>
+        <th>goods-delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <input id="ck0" type="checkbox" name="goods" value="10,2000">
+        </td>
+        <td>fi</td>
+        <td>10</td>
+        <td>
+          <div class="setnum"><span rel-type="down">-1</span><input type="text" name="" value="" class='writecan'><span rel-type="add">+1</span></div>
+        </td>
+        <td>0.00</td>
+        <td><a>删除</a></td>
+      </tr>
+      <tr>
+        <td>
+          <input id="ck1" type="checkbox" name="goods" value="11,2000">
+        </td>
+        <td>tw</td>
+        <td>11</td>
+        <td>
+          <div class="setnum"><span rel-type="down">-1</span><input type="text" name="" value="" class='writecan'><span rel-type="add">+1</span></div>
+        </td>
+        <td>0.00</td>
+        <td><a>删除</a></td>
+      </tr>
+      <tr>
+        <td>
+          <input id="ck2" type="checkbox" name="goods" value="12,2000">
+        </td>
+        <td>th</td>
+        <td>12</td>
+        <td>
+          <div class="setnum"><span rel-type="down">-1</span><input type="text" name="" value="" class='writecan'><span rel-type="add">+1</span></div>
+        </td>
+        <td>0.00</td>
+        <td><a>删除</a></td>
+      </tr>
+      <tr>
+        <td>
+          <input id="ck3" type="checkbox" name="goods" value="13,2000">
+        </td>
+        <td>fu</td>
+        <td>13</td>
+        <td>
+          <div class="setnum"><span rel-type="down">-1</span><input type="text" name="" value="" class='writecan'><span rel-type="add">+1</span></div>
+        </td>
+        <td>0.00</td>
+        <td><a>删除</a></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="total">商品个数为<span class="numberall"></span>总价为<span class="priceall"></span>总积分为<span class="scoreall"></span></div>
+  <script src="js/jquery-1.8.3.min.js"></script>
+  <script src="js/dy.dialog.js"></script>
+  <script src="js/count.js"></script>
+  <script>
+    $(function(){
+    	$('#abc').on('click',function(){
+    		dy.dialog.prompt({
+    				title: '消息提示',
+    				message:'请将信息填写完整请将信息整!',
+    				width: 480,
+    				height: 250
+    			});
+    	})
+    	$('#aaa').on('click',function(){
+    		dy.dialog.confirm({
+    				title: '消息提111示',
+    				message:'请将信息填写完整请将信整!',
+    				width: 480,
+    				height: 250
+    			});
+    	})
+    	$('#bbb').on('click',function(){
+    		dy.dialog.alert({
+    				title: '消息提示',
+    				message:'请将信息填写完整请将信完整!'
+    			});
+    	})
+    	$('#ccc').on('click',function(){
+    		dy.dialog.open({
+    				title: '消息提11示',
+    				content: $('#sure').html(),
+    				height:200
+    			});
+    	})
+    })
+  </script>
+</body></html>
