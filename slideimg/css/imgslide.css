@@ -531,6 +531,23 @@ body {
 .checktable tbody {
   border: 1px solid #eee;
 }
+.checktable a {
+  color: #1BA6EA;
+  cursor: pointer;
+}
+.checktable a:hover {
+  color: #BD0000;
+}
+
+.total {
+  color: #999;
+  line-height: rem-calc(32);
+  font-size: rem-calc(16);
+  margin: 20px;
+}
+.total span {
+  margin-right: 20px;
+}
 
 .call, .apply {
   color: #f00;
@@ -547,5 +564,4 @@ body {
   background-color: green;
   color: #fff;
 }
-
 /*# sourceMappingURL=imgslide.css.map */

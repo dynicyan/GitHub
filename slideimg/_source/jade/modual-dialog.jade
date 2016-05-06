@@ -7,7 +7,7 @@ block append head
 	meta(content="" name="Description")
 	meta(content="" name="Keywords")
 block content
-	- var goods = [{name:'fi',price:'10'},{name:'tw',price:'11'},{name:'th',price:'12'},{name:'fu',price:'13'}]
+	- var goods = [{name:'fi',price:'10'},{name:'tw',price:'11'},{name:'th',price:'12'},{name:'fu',price:'13'},{name:'sx',price:'15'},{name:'sev',price:'17'}]
 	.dialog-modual
 		.aaa#abc 弹出文本输入对话框
 		.aaa#aaa 弹出信息确认框
@@ -22,7 +22,6 @@ block content
 				th goods-name
 				th goods-price
 				th goods-number
-				th goods-ap
 				th goods-delete
 		tbody
 			for i,idex in goods
@@ -34,10 +33,9 @@ block content
 					td
 						.setnum
 							span(rel-type="down") -1
-							<input type="text" name="" value="" class='writecan'>
+							<input type="text" name="" value="1" class='writecan'>
 							span(rel-type="add") +1
-					td 0.00
-					td <a>删除</a>
+					td <a class="delete">删除</a>
 	.total
 		|商品个数为
 		span.numberall
