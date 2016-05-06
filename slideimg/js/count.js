@@ -120,20 +120,17 @@
 				var sprice = this.subprice.text(),
 					sscore = this.subscore.text(),
 					snum = this.subnum.text();
-					console.log(sprice,snum);
-				// for(var i = 0;i < subdata.length;i++){
 				var len,obj = del.parents('tr').find('input[name=goods]'),
 					id = obj.attr('id'),
 					value = obj.val().split(',');
 					price = value[0],
 					score = value[1],
 					number = parseInt($('#' + id).parents('tr').find('input.writecan').val())||1;
-					sprice = (sprice - parseFloat(price)*number) < 0?0:sprice - parseFloat(price)*number;
-					sscore = (sscore - parseInt(score)*number) < 0?0:sscore - parseInt(score)*number;
-					len = snum - 1  < 0?0:snum -1;
-					obj.attr('checked',false);
+				sprice = (sprice - parseFloat(price)*number) < 0?0:sprice - parseFloat(price)*number;
+				sscore = (sscore - parseInt(score)*number) < 0?0:sscore - parseInt(score)*number;
+				len = snum - 1  < 0?0:snum -1;
+				obj.attr('checked',false);
 				console.log(value,price,score,number);
-				// }
 				this.set(sprice.toFixed(2),sscore,len);
 			},
 			set:function(sprice,sscore,snum){
